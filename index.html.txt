@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VEN-Ledger AI | Contabilidad Automatizada para Venezuela</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body class="bg-slate-50 font-sans text-slate-900 scroll-smooth">
+
+    <nav class="fixed w-full z-50 bg-white/80 backdrop-blur-md border-b border-slate-200">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <div class="w-10 h-10 bg-blue-600 rounded-lg flex items-center justify-center shadow-lg">
+                    <i class="fas fa-microchip text-white"></i>
+                </div>
+                <h1 class="text-2xl font-bold tracking-tight text-slate-800">VEN-Ledger <span class="text-blue-600">AI</span></h1>
+            </div>
+            <div class="hidden md:flex space-x-8 font-medium">
+                <a href="#funciones" class="hover:text-blue-600 transition">Funciones</a>
+                <a href="#precios" class="hover:text-blue-600 transition">Precios</a>
+                <a href="dashboard.html" class="bg-blue-600 text-white px-6 py-2 rounded-full hover:bg-blue-700 shadow-md transition">Entrar al SaaS</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="pt-32 pb-20 px-6">
+        <div class="max-w-7xl mx-auto text-center">
+            <span class="bg-blue-100 text-blue-700 px-4 py-1 rounded-full text-sm font-bold uppercase tracking-widest mb-6 inline-block">
+                SaaS Adaptado a Normas VEN-NIF y SENIAT
+            </span>
+            <h2 class="text-5xl md:text-7xl font-extrabold text-slate-900 mb-8 leading-tight">
+                La Contabilidad en Venezuela, <br>
+                <span class="text-blue-600 italic">Redefinida por IA.</span>
+            </h2>
+            <p class="text-xl text-slate-600 max-w-3xl mx-auto mb-12">
+                Automatiza libros legales, retenciones de IVA/ISLR y conciliaciones bancarias con la tasa BCV en tiempo real. Deja que nuestro <b>Audit Guardian</b> proteja tu empresa.
+            </p>
+            <div class="flex flex-col md:flex-row justify-center gap-4">
+                <a href="dashboard.html" class="bg-slate-900 text-white px-10 py-4 rounded-xl text-lg font-bold hover:bg-slate-800 transition shadow-xl">
+                    Empezar Gratis Ahora
+                </a>
+                <a href="#funciones" class="bg-white border border-slate-200 text-slate-700 px-10 py-4 rounded-xl text-lg font-bold hover:bg-slate-50 transition">
+                    Ver Funciones
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section id="funciones" class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid md:grid-cols-3 gap-12">
+                <div class="group p-8 rounded-2xl border border-slate-100 bg-slate-50 hover:bg-white hover:shadow-2xl transition duration-300">
+                    <div class="w-14 h-14 bg-blue-600 rounded-xl flex items-center justify-center mb-6 shadow-lg shadow-blue-200">
+                        <i class="fas fa-file-invoice-dollar text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4">Módulo SENIAT</h3>
+                    <p class="text-slate-600">Genera archivos TXT de retenciones listos para el portal. IVA e ISLR calculados según el tipo de contribuyente.</p>
+                </div>
+                <div class="group p-8 rounded-2xl border border-slate-100 bg-slate-50 hover:bg-white hover:shadow-2xl transition duration-300">
+                    <div class="w-14 h-14 bg-green-500 rounded-xl flex items-center justify-center mb-6 shadow-lg shadow-green-200">
+                        <i class="fas fa-coins text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4">Multi-Moneda BCV</h3>
+                    <p class="text-slate-600">Gestión automática de dualidad VES/USD. El sistema actualiza la tasa oficial diariamente para tus asientos de ajuste.</p>
+                </div>
+                <div class="group p-8 rounded-2xl border border-slate-100 bg-slate-50 hover:bg-white hover:shadow-2xl transition duration-300">
+                    <div class="w-14 h-14 bg-purple-600 rounded-xl flex items-center justify-center mb-6 shadow-lg shadow-purple-200">
+                        <i class="fas fa-shield-halved text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4">Audit Guardian</h3>
+                    <p class="text-slate-600">Nuestra IA detecta inconsistencias en el RIF y errores de facturación antes de que se conviertan en multas.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="precios" class="py-24 bg-slate-900 text-white">
+        <div class="max-w-7xl mx-auto px-6 text-center">
+            <h2 class="text-4xl font-bold mb-16">Planes adaptados a tu negocio</h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="p-8 rounded-3xl bg-slate-800 border border-slate-700 text-left">
+                    <h4 class="text-blue-400 font-bold mb-4 uppercase">Individual</h4>
+                    <p class="text-5xl font-extrabold mb-6">$15 <span class="text-lg font-normal text-slate-400">/mes</span></p>
+                    <ul class="space-y-4 mb-10 text-slate-300">
+                        <li><i class="fas fa-check text-blue-400 mr-2"></i> 1 Empresa</li>
+                        <li><i class="fas fa-check text-blue-400 mr-2"></i> Libros Diarios y Mayor</li>
+                        <li><i class="fas fa-check text-blue-400 mr-2"></i> Reportes PDF</li>
+                    </ul>
+                    <a href="dashboard.html" class="block text-center py-4 border border-blue-400 text-blue-400 rounded-xl font-bold hover:bg-blue-400 hover:text-white transition">Seleccionar</a>
+                </div>
+                <div class="p-8 rounded-3xl bg-blue-600 text-left transform md:-translate-y-4 shadow-2xl">
+                    <h4 class="text-white font-bold mb-4 uppercase opacity-80">Despacho</h4>
+                    <p class="text-5xl font-extrabold mb-6">$45 <span class="text-lg font-normal opacity-60">/mes</span></p>
+                    <ul class="space-y-4 mb-10 text-white">
+                        <li><i class="fas fa-check mr-2"></i> Hasta 10 Empresas</li>
+                        <li><i class="fas fa-check mr-2"></i> TXT SENIAT Automático</li>
+                        <li><i class="fas fa-check mr-2"></i> Conciliación Bancaria</li>
+                        <li><i class="fas fa-check mr-2"></i> Inventario Básico</li>
+                    </ul>
+                    <a href="dashboard.html" class="block text-center py-4 bg-white text-blue-600 rounded-xl font-bold hover:bg-slate-100 transition">Más Popular</a>
+                </div>
+                <div class="p-8 rounded-3xl bg-slate-800 border border-slate-700 text-left">
+                    <h4 class="text-blue-400 font-bold mb-4 uppercase">Platinum</h4>
+                    <p class="text-5xl font-extrabold mb-6">$120 <span class="text-lg font-normal text-slate-400">/mes</span></p>
+                    <ul class="space-y-4 mb-10 text-slate-300">
+                        <li><i class="fas fa-check text-blue-400 mr-2"></i> Empresas Ilimitadas</li>
+                        <li><i class="fas fa-check text-blue-400 mr-2"></i> Auditoría IA 24/7</li>
+                        <li><i class="fas fa-check text-blue-400 mr-2"></i> Módulo Bodegón Pro</li>
+                    </ul>
+                    <a href="dashboard.html" class="block text-center py-4 border border-blue-400 text-blue-400 rounded-xl font-bold hover:bg-blue-400 hover:text-white transition">Contactar</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-12 bg-white border-t border-slate-100 text-center text-slate-400">
+        <p>© 2026 VEN-Ledger AI. Desarrollado para la eficiencia contable en Venezuela.</p>
+    </footer>
+
+</body>
+</html>

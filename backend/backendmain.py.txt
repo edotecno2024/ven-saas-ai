@@ -1,0 +1,16 @@
+from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
+
+app = FastAPI()
+
+# Esto permite que tu web hable con el motor
+app.add_middleware(CORSMiddleware, allow_origins=["*"], allow_methods=["*"], allow_headers=["*"])
+
+@app.get("/")
+def home():
+    return {"status": "VEN-Ledger AI Funcionando", "tasa_bcv": "36.50"}
+
+@app.post("/asiento")
+def asiento(desc: str, monto: float):
+    iva = monto * 0.16
+    return {"descripcion": desc, "total_con_iva": monto + iva}
