@@ -86,3 +86,19 @@ def validar_rif(rif: str):
 def obtener_tasa():
     """Devuelve la tasa oficial configurada"""
     return db_mock
+
+@app.get("/reporte/balance")
+def generar_balance():
+    # Simulación de datos contables reales
+    return {
+        "empresa": "CLIENTE DEMO S.A.",
+        "periodo": "MARZO 2026",
+        "cuentas": [
+            {"codigo": "1.1.01", "nombre": "Caja Chica", "debe": 500.00, "haber": 0},
+            {"codigo": "1.1.02", "nombre": "Banco Mercantil", "debe": 12500.50, "haber": 0},
+            {"codigo": "2.1.01", "nombre": "Cuentas por Pagar", "debe": 0, "haber": 4200.00},
+            {"codigo": "4.1.01", "nombre": "Ventas Gravadas", "debe": 0, "haber": 8800.50}
+        ],
+        "totales": {"debe": 13000.50, "haber": 13000.50}
+    }
+
