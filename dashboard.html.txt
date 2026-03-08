@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Panel de Control | VEN-Ledger AI</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-slate-100 flex">
+
+    <div class="w-64 h-screen bg-slate-900 text-white p-6 fixed">
+        <h2 class="text-2xl font-bold text-blue-400 mb-8">VEN-Ledger AI</h2>
+        <nav class="space-y-4">
+            <button onclick="probarConexion()" class="w-full text-left p-3 bg-blue-600 rounded">Verificar Motor</button>
+            <div class="border-t border-slate-700 my-4"></div>
+            <p class="text-xs text-slate-500 uppercase">Contabilidad</p>
+            <a href="#" class="block p-2 hover:bg-slate-800">Libro Diario</a>
+            <a href="#" class="block p-2 hover:bg-slate-800">Retenciones SENIAT</a>
+        </nav>
+    </div>
+
+    <div class="ml-64 p-10 w-full">
+        <h1 class="text-3xl font-bold mb-6">Escritorio Contable</h1>
+        
+        <div class="grid grid-cols-3 gap-6 mb-10">
+            <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-200">
+                <p class="text-slate-500">Estado del Motor</p>
+                <h3 id="status-motor" class="text-xl font-bold text-orange-500">Desconectado</h3>
+            </div>
+            <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-200">
+                <p class="text-slate-500">Tasa BCV hoy</p>
+                <h3 id="tasa-val" class="text-xl font-bold text-blue-600">Cargando...</h3>
+            </div>
+        </div>
+
+        <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-200 max-w-md">
+            <h2 class="text-xl font-bold mb-4">Probar Asiento Rápido</h2>
+            <input id="desc-input" type="text" placeholder="Descripción del gasto" class="w-full p-3 border rounded-lg mb-4">
+            <input id="monto-input" type="number" placeholder="Monto en BS" class="w-full p-3 border rounded-lg mb-4">
+            <button onclick="enviarAsiento()" class="w-full bg-slate-900 text-white p-3 rounded-lg font-bold">Calcular IVA (IA)</button>
+            
+            <div id="resultado" class="mt-6 p-4 bg-blue-50 text-blue-800 rounded-lg hidden">
+                </div>
+        </div>
+    </div>
+
+    <script>
+        // ESTA ES LA URL QUE DEBES CAMBIAR POR LA DE RENDER
+        const URL_API = "https://ven-saas-ai.onrender.com";
+
+        // Función FETCH para verificar si el motor está encendido
+        async function probarConexion() {
+            const statusLabel = document.getElementById('status-motor');
+            const tasaLabel = document.getElementById('tasa-val');
+            try {
+                const response = await fetch(URL_API + "/");
+                const data = await response.json();
+                statusLabel.innerText = "Conectado Online";
+                statusLabel.className = "text-xl font-bold text-green-500";
+                tasaLabel.innerText = data.tasa_bcv + " VES";
+            } catch (error) {
+                alert("Error: No se pudo conectar con el motor en Render. Verifica la URL.");
+            }
+        }
+
+        // Función FETCH para enviar datos al motor y recibir cálculos
+        async function enviarAsiento() {
+            const desc = document.getElementById('desc-input').value;
+            const monto = document.getElementById('monto-input').value;
+            const resDiv = document.getElementById('resultado');
+
+            try {
+                const response = await fetch(`${URL_API}/asiento?desc=${desc}&monto=${monto}`, {
+                    method: 'POST'
+                });
+                const data = await response.json();
+                
+                resDiv.classList.remove('hidden');
+                resDiv.innerHTML = `
+                    <p><b>Asiento:</b> ${data.descripcion}</p>
+                    <p><b>Total con IVA:</b> ${data.total_con_iva} VES</p>
+                `;
+            } catch (error) {
+                console.error("Error al procesar:", error);
+            }
+        }
+    </script>
+</body>
+</html>
