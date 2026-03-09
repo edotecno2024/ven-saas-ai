@@ -1,26 +1,30 @@
-from fastapi import FastAPI, HTTPException, Query
-from fastapi.middleware.cors import CORSMiddleware
-from typing import Optional
-import datetime
+from fastapi import Depends, status
+from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
+from passlib.context import CryptContext
+from datetime import timedelta
 
-app = FastAPI(title="VEN-Ledger AI Engine")
+# Configuración de Seguridad
+pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
+oauth2_scheme = OAuth2PasswordBearer(tokenUrl="login")
 
-# --- CONFIGURACIÓN DE SEGURIDAD (CORS) ---
-# Esto es vital para que tu dashboard en GitHub no sea bloqueado
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=["*"],  # Permite que edotecno2024.github.io se conecte
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
-
-# --- BASE DE DATOS SIMULADA (Para arranque rápido) ---
-# En el futuro, aquí conectarás PostgreSQL
-db_mock = {
-    "tasa_bcv": 36.55,
-    "last_update": datetime.date.today().isoformat()
+# Base de datos de usuarios (Simulada para esta fase)
+users_db = {
+    "admin@venledger.com": {
+        "username": "admin@venledger.com",
+        "full_name": "Contador Pro",
+        "hashed_password": pwd_context.hash("clave123"), # Cambia esto luego
+        "disabled": False,
+    }
 }
+
+@app.post("/token")
+async def login(form_data: OAuth2PasswordRequestForm = Depends()):
+    user = users_db.get(form_data.username)
+    if not user or not pwd_context.verify(form_data.password, user["hashed_password"]):
+        raise HTTPException(status_code=400, detail="Correo o clave incorrecta")
+    
+    # Aquí generamos el "pase de entrada"
+    return {"access_token": user["username"], "token_type": "bearer"}
 
 # --- RUTAS ---
 
@@ -101,4 +105,5 @@ def generar_balance():
         ],
         "totales": {"debe": 13000.50, "haber": 13000.50}
     }
+
 
