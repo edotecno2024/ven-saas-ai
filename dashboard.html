@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Panel de Control | VEN-Ledger AI</title>
+    <title>Panel de Control | VEN-SAAS AI</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-slate-100 flex">
@@ -42,6 +42,57 @@
                 </div>
         </div>
     </div>
+    <div class="mt-10 bg-white p-8 rounded-2xl shadow-sm border border-slate-200">
+    <div class="flex justify-between items-center mb-6">
+        <h2 class="text-xl font-bold">Balance de Comprobación</h2>
+        <button onclick="cargarReporte()" class="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition">
+            <i class="fas fa-sync"></i> Generar Reporte
+        </button>
+    </div>
+    
+    <div id="tabla-reporte" class="hidden">
+        <table class="w-full text-left border-collapse">
+            <thead>
+                <tr class="border-b border-slate-200 text-slate-500 italic">
+                    <th class="py-2">Código</th>
+                    <th>Cuenta</th>
+                    <th>Debe (VES)</th>
+                    <th>Haber (VES)</th>
+                </tr>
+            </thead>
+            <tbody id="cuerpo-tabla">
+                </tbody>
+        </table>
+    </div>
+</div>
+
+<script>
+async function cargarReporte() {
+    const resDiv = document.getElementById('tabla-reporte');
+    const cuerpo = document.getElementById('cuerpo-tabla');
+    
+    try {
+        const response = await fetch(URL_API + "/reporte/balance");
+        const data = await response.json();
+        
+        cuerpo.innerHTML = ""; // Limpiar tabla
+        data.cuentas.forEach(c => {
+            cuerpo.innerHTML += `
+                <tr class="border-b border-slate-50 hover:bg-slate-50">
+                    <td class="py-3 font-mono text-sm">${c.codigo}</td>
+                    <td>${c.nombre}</td>
+                    <td class="text-blue-600">${c.debe > 0 ? c.debe.toFixed(2) : '-'}</td>
+                    <td class="text-red-600">${c.haber > 0 ? c.haber.toFixed(2) : '-'}</td>
+                </tr>
+            `;
+        });
+        
+        resDiv.classList.remove('hidden');
+    } catch (error) {
+        alert("Error al obtener el reporte.");
+    }
+}
+</script>
 
     <script>
         // ESTA ES LA URL QUE DEBES CAMBIAR POR LA DE RENDER
@@ -86,3 +137,4 @@
     </script>
 </body>
 </html>
+
