@@ -1,3 +1,14 @@
+<script>
+    // Si no hay token de sesión, lo mandamos al login
+    if (!localStorage.getItem('token')) {
+        window.location.href = "login.html";
+    }
+
+    function cerrarSesion() {
+        localStorage.removeItem('token');
+        window.location.href = "index.html";
+    }
+</script>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -137,4 +148,5 @@ async function cargarReporte() {
     </script>
 </body>
 </html>
+
 
